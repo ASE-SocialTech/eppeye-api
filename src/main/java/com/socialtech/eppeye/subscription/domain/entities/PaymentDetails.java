@@ -21,7 +21,7 @@ public class PaymentDetails {
     @Column(name = "paymentdetails_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subscription_id", nullable = false)
     private Subscription subscription;
 

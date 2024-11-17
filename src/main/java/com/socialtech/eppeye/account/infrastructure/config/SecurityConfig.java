@@ -60,8 +60,9 @@ public class SecurityConfig {
             authorize
                     .requestMatchers(
                             "/swagger-ui/**",
-                            "/api/v1/accounts/auth/**",
-                            "/api/v1/roles",
+                            "/api/v1/accounts/**",
+                            "/api/v1/plans/**",
+                            "/api/v1/roles/**",
                             "/v3/api-docs/**",
                             "/error",
                             "/favicon.ico"
