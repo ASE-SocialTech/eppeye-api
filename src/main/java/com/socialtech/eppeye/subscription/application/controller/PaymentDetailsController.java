@@ -25,35 +25,35 @@ public class PaymentDetailsController {
     @Operation(summary = "Get payment details by id")
     @GetMapping("/payment-details/{id}")
     public ResponseEntity<ApiResponse<PaymentDetailsResponse>> getPaymentDetailsById(@PathVariable Long id) {
-        var res = paymentDetailsService.getPaymentRequestById(id);
+        var res = paymentDetailsService.getPaymentDetailsById(id);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @Operation(summary = "Get payment details by user id")
     @GetMapping("/payment-details/user/{id}")
-    public ResponseEntity<ApiResponse<PaymentDetailsResponse>> getPaymentRequestBySubscriptionId(@PathVariable Long id) {
-        var res = paymentDetailsService.getPaymentRequestBySubscriptionId(id);
+    public ResponseEntity<ApiResponse<PaymentDetailsResponse>> getPaymentDetailsBySubscriptionId(@PathVariable Long id) {
+        var res = paymentDetailsService.getPaymentDetailsBySubscriptionId(id);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @Operation(summary = "Create payment details")
     @PostMapping("/payment-details")
     public ResponseEntity<ApiResponse<PaymentDetailsResponse>> createPaymentDetails(@RequestBody PaymentDetailsRequest request) {
-        var res = paymentDetailsService.createPaymentRequest(request);
+        var res = paymentDetailsService.createPaymentDetails(request);
         return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
     @Operation(summary = "Update payment details")
     @PutMapping("/payment-details/{id}")
     public ResponseEntity<ApiResponse<PaymentDetailsResponse>> updatePaymentDetails(@PathVariable Long id, @RequestBody PaymentDetailsRequest request) {
-        var res = paymentDetailsService.updatePaymentRequest(id, request);
+        var res = paymentDetailsService.updatePaymentDetails(id, request);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @Operation(summary = "Delete payment details")
     @DeleteMapping("/payment-details/{id}")
     public ResponseEntity<ApiResponse<Void>> deletePaymentDetails(@PathVariable Long id) {
-        var res = paymentDetailsService.deletePaymentRequest(id);
+        var res = paymentDetailsService.deletePaymentDetails(id);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
