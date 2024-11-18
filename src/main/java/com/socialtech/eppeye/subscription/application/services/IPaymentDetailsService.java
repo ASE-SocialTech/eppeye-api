@@ -6,9 +6,9 @@ import com.socialtech.eppeye.subscription.application.dto.response.PaymentDetail
 import org.springframework.stereotype.Service;
 
 public interface IPaymentDetailsService  {
-    ApiResponse<PaymentDetailsResponse> getPaymentRequestById(Long id);
-    ApiResponse<PaymentDetailsResponse> getPaymentRequestBySubscriptionId(Long id);
-    ApiResponse<PaymentDetailsResponse> createPaymentRequest(PaymentDetailsRequest request);
-    ApiResponse<PaymentDetailsResponse> updatePaymentRequest(Long id, PaymentDetailsRequest request);
-    ApiResponse<Void> deletePaymentRequest(Long id);
+    ApiResponse<PaymentDetailsResponse> getPaymentDetailsById(Long id);
+    ApiResponse<PaymentDetailsResponse> getPaymentDetailsBySubscriptionId(Long id);
+    ApiResponse<PaymentDetailsResponse> createPaymentDetails(PaymentDetailsRequest request);
+    ApiResponse<PaymentDetailsResponse> updatePaymentDetails(Long id, PaymentDetailsRequest request);
+    ApiResponse<Void> deletePaymentDetails(Long id);
 }
