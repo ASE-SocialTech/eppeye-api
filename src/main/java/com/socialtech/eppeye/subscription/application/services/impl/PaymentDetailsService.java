@@ -33,7 +33,7 @@ public class PaymentDetailsService implements IPaymentDetailsService {
 
 
     @Override
-    public ApiResponse<PaymentDetailsResponse> getPaymentRequestById(Long id) {
+    public ApiResponse<PaymentDetailsResponse> getPaymentDetailsById(Long id) {
         Optional<PaymentDetails> paymentDetailsOptional = paymentDetailsRepository.findById(id);
         if (paymentDetailsOptional.isEmpty()){
             return new ApiResponse<>("Payment details not found", Estatus.ERROR, null);
@@ -44,7 +44,7 @@ public class PaymentDetailsService implements IPaymentDetailsService {
         }
     }
 
-    public ApiResponse<PaymentDetailsResponse> getPaymentRequestBySubscriptionId(Long id) {
+    public ApiResponse<PaymentDetailsResponse> getPaymentDetailsBySubscriptionId(Long id) {
         Optional<PaymentDetails> paymentDetailsOptional = paymentDetailsRepository.findBySubscriptionId(id);
         if (paymentDetailsOptional.isEmpty()){
             return new ApiResponse<>("Payment details not found", Estatus.ERROR, null);
@@ -56,7 +56,7 @@ public class PaymentDetailsService implements IPaymentDetailsService {
     }
 
     @Override
-    public ApiResponse<PaymentDetailsResponse> createPaymentRequest(PaymentDetailsRequest request) {
+    public ApiResponse<PaymentDetailsResponse> createPaymentDetails(PaymentDetailsRequest request) {
         if (request.getSubscriptionId() == null) {
             return new ApiResponse<>("Subscription ID must be provided", Estatus.ERROR, null);
         }
@@ -79,7 +79,7 @@ public class PaymentDetailsService implements IPaymentDetailsService {
     }
 
     @Override
-    public ApiResponse<PaymentDetailsResponse> updatePaymentRequest(Long id, PaymentDetailsRequest request) {
+    public ApiResponse<PaymentDetailsResponse> updatePaymentDetails(Long id, PaymentDetailsRequest request) {
         Optional<PaymentDetails> paymentDetailsOptional = paymentDetailsRepository.findById(id);
         if(paymentDetailsOptional.isEmpty()){
             return new ApiResponse<>("Payment details not found", Estatus.ERROR, null);
@@ -93,7 +93,7 @@ public class PaymentDetailsService implements IPaymentDetailsService {
     }
 
     @Override
-    public ApiResponse<Void> deletePaymentRequest(Long id) {
+    public ApiResponse<Void> deletePaymentDetails(Long id) {
         Optional<PaymentDetails> paymentDetailsOptional = paymentDetailsRepository.findById(id);
         if(paymentDetailsOptional.isEmpty()){
             return new ApiResponse<>("Payment details not found", Estatus.ERROR, null);
