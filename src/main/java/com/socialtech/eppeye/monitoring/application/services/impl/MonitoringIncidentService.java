@@ -49,12 +49,20 @@ public class MonitoringIncidentService implements IMonitoringIncidentService {
             return new ApiResponse<>("Monitoring Session not found", Estatus.ERROR, null);
         }
 
+        MonitoringSession monitoringSession = monitoringSessionOptional.get();
+
+        // Mapear y guardar directamente el incidente
         MonitoringIncident monitoringIncident = modelMapper.map(request, MonitoringIncident.class);
-        monitoringIncident.setMonitoringSession(monitoringSessionOptional.get());
+        monitoringIncident.setId(null);
+        monitoringIncident.setMonitoringSession(monitoringSession);
+        monitoringIncident = monitoringIncidentRepository.save(monitoringIncident); // Se genera el ID aquí
 
-        monitoringIncidentRepository.save(monitoringIncident);
+        // Asociar el incidente con la sesión (sin necesidad de re-guardar la sesión completa)
+        monitoringSession.getIncidents().add(monitoringIncident);
 
+        // Mapear la respuesta directamente desde el objeto guardado
         MonitoringIncidentResponse response = modelMapper.map(monitoringIncident, MonitoringIncidentResponse.class);
+
         return new ApiResponse<>("Monitoring Incident created successfully", Estatus.SUCCESS, response);
     }
 
