@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(name = "Cameras")
 @RestController
 @RequestMapping("/api/v1/")
@@ -25,6 +27,13 @@ public class CameraController {
     @GetMapping("/cameras/{id}")
     public ResponseEntity<ApiResponse<CameraResponse>> getCameraById(@PathVariable Long id) {
         ApiResponse<CameraResponse> res = cameraService.getCameraById(id);
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get cameras by user id")
+    @GetMapping("/users/{userId}/cameras")
+    public ResponseEntity<ApiResponse<List<CameraResponse>>> getByUserId(@PathVariable Long userId) {
+        ApiResponse<List<CameraResponse>> res = cameraService.getByUserId(userId);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 

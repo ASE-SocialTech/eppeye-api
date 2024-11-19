@@ -18,7 +18,6 @@ public class CameraResponse {
 
     private Long id;
     private String cameraDevice;
-    private User user;
     private List<MonitoringSessionResponse> monitoringSessions;
     private List<PPEConfigurationResponse> ppeConfigurations;
 }

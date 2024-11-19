@@ -12,8 +12,10 @@ import com.socialtech.eppeye.monitoring.infrastructure.repositories.ICameraRepos
 import com.socialtech.eppeye.shared.model.dto.response.ApiResponse;
 import com.socialtech.eppeye.shared.model.enums.Estatus;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,6 +45,15 @@ public class CameraService implements ICameraService {
                     return new ApiResponse<>("Camera found successfully", Estatus.SUCCESS, cameraResponseDto);
                 })
                 .orElseGet(() -> new ApiResponse<>("Camera not found", Estatus.ERROR, null));
+    }
+
+    @Override
+    public ApiResponse<List<CameraResponse>> getByUserId(Long userId) {
+        List<Camera> cameras = cameraRepository.findByUserId(userId);
+
+        List<CameraResponse> cameraResponseDtos = modelMapper.map(cameras, new TypeToken<List<CameraResponse>>(){}.getType());
+
+        return new ApiResponse<>("Cameras found successfully", Estatus.SUCCESS, cameraResponseDtos);
     }
 
     @Override
