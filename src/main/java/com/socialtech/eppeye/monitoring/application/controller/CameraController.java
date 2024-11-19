@@ -31,7 +31,7 @@ public class CameraController {
     }
 
     @Operation(summary = "Get cameras by user id")
-    @GetMapping("/users/{userId}/cameras")
+    @GetMapping("/cameras/users/{userId}")
     public ResponseEntity<ApiResponse<List<CameraResponse>>> getByUserId(@PathVariable Long userId) {
         ApiResponse<List<CameraResponse>> res = cameraService.getByUserId(userId);
         return new ResponseEntity<>(res, HttpStatus.OK);
